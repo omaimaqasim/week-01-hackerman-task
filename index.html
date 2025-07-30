@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hackerman</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    body {
+        background-color: black;
+        color: #00ff00;
+        font-family: 'Courier New', Courier, monospace;
+        padding: 20px;
+    }
+
+    #terminal {
+        white-space: pre-line; /* allows line breaks */
+        font-size: 1.7rem;
+        min-height: 70vh;
+        padding: 20px;
+        line-height: 2;
+
+    }
+</style>
+
 </head>
 <body>
-
+<div id="terminal">
+   
+</div>
     <script>
         /*
 Exercise 5: Hackerman
@@ -34,7 +58,35 @@ Example Styling Ideas:
 - Monospace font
 - Typing animation (optional)
 */
+ let terminal = document.querySelector("#terminal") 
 
+function delay(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+
+async function hackerman() {
+    
+    
+        terminal.innerHTML = "Initializing Hack program...\n"
+        await delay(3000)
+      
+        // we use += so we can add more innerhtml
+        terminal.innerHTML += "Hacking zain's username...\n";
+  await delay(3000);
+
+  terminal.innerHTML += "Username found: zainAli_1234...\n";
+  await delay(3000);
+
+  terminal.innerHTML += "Connecting to Facebook...\n";
+  await delay(3000);
+
+  terminal.innerHTML += "Connection established ✅\n";
+
+}
+
+hackerman()
     </script>
     
 </body>
