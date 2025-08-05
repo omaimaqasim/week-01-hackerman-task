@@ -1,93 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hackerman</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hackerman</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
     body {
-        background-color: black;
-        color: #00ff00;
-        font-family: 'Courier New', Courier, monospace;
-        padding: 20px;
+      background-color: black;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
     }
-
-    #terminal {
-        white-space: pre-line; /* allows line breaks */
-        font-size: 1.7rem;
-        min-height: 70vh;
-        padding: 20px;
-        line-height: 2;
-
+    div {
+      white-space: pre-line;
+      font-size: 1.7rem;
+      padding: 10px;
+      line-height: 2;
     }
-</style>
-
+  </style>
 </head>
 <body>
-<div id="terminal">
-   
-</div>
-    <script>
-        /*
-Exercise 5: Hackerman
 
-Goal:
-Write a JavaScript program that pretends to look like a hacker tool.
+<script>
+  async function hackerman(comment) {
+    await randomDelay();
+    let div = document.createElement("div");
+    div.innerHTML = comment;
+    document.body.append(div);
+  }
 
-Instructions:
-✅ Create an async function.
-✅ Display messages one after another using delay.
-✅ Messages should look like fake hacking output.
-
-Display these messages in order:
-1. Initializing Hack program...
-2. Hacking Ashish's username...
-3. Username found: aashish17...
-4. Connecting to Facebook...
-
-Bonus:
-✨ Use HTML and add CSS styling to look like a hacker terminal.
-
-Example Styling Ideas:
-- Black background
-- Green text (like terminal)
-- Monospace font
-- Typing animation (optional)
-*/
- let terminal = document.querySelector("#terminal") 
-
-function delay(ms) {
+  function randomDelay() {
+    let timeout = 1 + 6 * Math.random(); // 1 to 7 seconds
     return new Promise((resolve) => {
-        setTimeout(resolve, ms);
+      setTimeout(resolve, timeout * 1000);
     });
-}
+  }
 
-async function hackerman() {
-    
-    
-        terminal.innerHTML = "Initializing Hack program...\n"
-        await delay(3000)
-      
-        // we use += so we can add more innerhtml
-        terminal.innerHTML += "Hacking zain's username...\n";
-  await delay(3000);
+  let comments = [
+    "Initializing Hack program...\n",
+    "Hacking zain's username...\n",
+    "Username found: zainAli_1234...\n",
+    "Connecting to Facebook...\n",
+    "Connection established ✅\n"
+  ];
 
-  terminal.innerHTML += "Username found: zainAli_1234...\n";
-  await delay(3000);
+  async function startHacking() {
+    for (const comment of comments) {
+      await hackerman(comment); // ✅ Wait for each step
+    }
+  }
 
-  terminal.innerHTML += "Connecting to Facebook...\n";
-  await delay(3000);
+  startHacking(); 
+</script>
 
-  terminal.innerHTML += "Connection established ✅\n";
-
-}
-
-hackerman()
-    </script>
-    
 </body>
 </html>
