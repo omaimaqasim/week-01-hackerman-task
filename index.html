@@ -24,8 +24,14 @@
   </style>
 </head>
 <body>
-
-<script>
+  
+  <script>
+  function randomDelay() {
+    let timeout = 1 + 6 * Math.random(); // 1 to 7 seconds
+    return new Promise((resolve) => {
+      setTimeout(resolve, timeout * 1000);
+    });
+  }
   async function hackerman(comment) {
     await randomDelay();
     let div = document.createElement("div");
@@ -33,28 +39,36 @@
     document.body.append(div);
   }
 
-  function randomDelay() {
-    let timeout = 1 + 6 * Math.random(); // 1 to 7 seconds
-    return new Promise((resolve) => {
-      setTimeout(resolve, timeout * 1000);
-    });
-  }
+
+  async function main() {
+
+    setInterval(() => {
+      let last =   document.body.lastElementChild //  that is current div
+      if (last.innerHTML.endsWith("...")) {
+        last.innerHTML = last.innerHTML.slice(0,last.innerHTML.length-3)
+      }
+      else{
+
+        last.innerHTML = last.innerHTML + "."
+      }
+    }, 700);
+
+
+    
 
   let comments = [
-    "Initializing Hack program...\n",
-    "Hacking zain's username...\n",
-    "Username found: zainAli_1234...\n",
-    "Connecting to Facebook...\n",
-    "Connection established ✅\n"
+    "Initializing Hack program",
+    "Hacking zain's username",
+    "Username found: zainAli_1234",
+    "Connecting to Facebook",
+    "Connection established ✅"
   ];
-
-  async function startHacking() {
     for (const comment of comments) {
       await hackerman(comment); // ✅ Wait for each step
     }
   }
 
-  startHacking(); 
+  main(); 
 </script>
 
 </body>
